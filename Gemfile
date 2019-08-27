@@ -1,3 +1,4 @@
+#어려서부터 우리집은 가난했었고!!
 source 'https://rubygems.org'
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
