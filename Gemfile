@@ -3,7 +3,7 @@
 ## ㅋㅋㅋㅋㅋasdfasdfasdf
 ###gem "coderay", "~> 1.1.1"
 #gem "request_store", "1.0.5"
-#gem "mime-types"
+#gem "asdfasdfasdfasdfmime-types"
 #source 'https://rubygems.org'
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
