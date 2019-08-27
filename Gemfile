@@ -2,7 +2,6 @@
 #asdfasdfasdfasdfasdf
 ## ㅋㅋㅋㅋㅋasdfasdfasdf
 ###gem "coderay", "~> 1.1.1"
-##gem "builder", ">= 3.0.4"
 #gem "request_store", "1.0.5"
 #gem "mime-types"
 #source 'https://rubygems.org'
