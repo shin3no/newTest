@@ -1,7 +1,7 @@
 #어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아
 #asdfasdfasdfasdfasdf
 ## ㅋㅋㅋㅋㅋasdfasdfasdf
-###gem asdfasdf"coderaasdfaasdfsdfy", "~> 1.1.1"
+###gem asdfasdf"codeasdfasdfraasdfaasdfsdfy", "~> 1.1.1"
 #gem "request_store", "1.0.5"
 #gem "asdfasdasdfasdasdfffasdfasdfmime-types"
 #source 'https://rubygems.org'
