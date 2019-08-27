@@ -1,6 +1,6 @@
 #어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아
 #asdfasdfasdfasdfasdf
-## ㅋㅋㅋㅋㅋ
+## ㅋㅋㅋㅋㅋasdfasdfasdf
 ###gem "coderay", "~> 1.1.1"
 ##gem "builder", ">= 3.0.4"
 #gem "request_store", "1.0.5"
