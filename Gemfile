@@ -1,7 +1,11 @@
 #어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아
-asdfasdfasdfasdfasdf
+#asdfasdfasdfasdfasdf
 ## ㅋㅋㅋㅋㅋ
-source 'https://rubygems.org'
+###gem "coderay", "~> 1.1.1"
+##gem "builder", ">= 3.0.4"
+#gem "request_store", "1.0.5"
+#gem "mime-types"
+#source 'https://rubygems.org'
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
   abort "Redmine requires Bundler 1.5.0 or higher (you're using #{Bundler::VERSION}).\nPlease update with 'gem update bundler'."
