@@ -84,7 +84,7 @@ if File.exist?(database_file)
         gem "tiny_tds", "~> 0.6.2", :platforms => [:mri, :mingw, :x64_mingw]
         gem "activerecord-sqlserver-adapter", :platforms => [:mri, :mingw, :x64_mingw]
       else
-        warn("Unknown database adapter `#{adapter}` found in config/database.yml, use Gemfile.local to load your own database gems")
+        warn("Unknown database adapter `#{adapter}` found din config/database.yml, use Gemfile.local to load your own database gems")
       end
     end
   else
