@@ -1,4 +1,4 @@
-#어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아111
+#어려서부터 우리집은 가난했었asdfasdf고!! 야이야이야아아~~ 수정해쓰아111
 #어려서부터 우리asdf집은sdfg가난했었고!!asdfasdf 야이야이야아아~~ 수정asdfasasdfdf해쓰아111d
 #source 'https://rubygems.org'asdfasdfasdf
 
