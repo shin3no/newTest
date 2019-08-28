@@ -1,6 +1,6 @@
 #어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아111
 #어려서부터 우리asdf집은 가난했었고!! 야이야이야아아~~ 수정asasdfdf해쓰아111d
-#source 'https://rubygems.org'asdfasdf
+#source 'https://rubygems.org'asdfasdfasdf
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
   abort "Redmine requires Bundler 1.5.0 or higher (you're using #{Bundler::VERSION}).\nPlease update with 'gem update bundler'."
@@ -92,7 +92,7 @@ if File.exist?(database_file)
   end
 else
   warn("Please configure your config/database.yml first")
-end
+endasdf
 
 group :development do
   gem "rdoc", ">= 2.4.2"
