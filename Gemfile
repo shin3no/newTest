@@ -1,5 +1,5 @@
 #어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정해쓰아111
-#어려서부터 우리집은 가난했었고!! 야이야이야아아~~ 수정asdf해쓰아111d
+#어려서부터 우리asdf집은 가난했었고!! 야이야이야아아~~ 수정asdf해쓰아111d
 #source 'https://rubygems.org'
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
