@@ -1,6 +1,6 @@
-#어려서부터 우리집은 가난했었asdfasdf고!! 야이야이야아아~~ 수정해쓰아111
+#어려서부터 우리집은 가난했었asdfasdf고dd!! 야이야이야아아~~ 수정해쓰아111
 #어려서부터 우리asdf집은sdfg가난했었고!!asdfasdf 야이야이야아아~~ 수정asdfasasdfdf해쓰아111d
-#source 'https://rubygems.org'asdfasdfasdf
+#source 'https://rubddygems.org'asdfasdfasdf
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
   abort "Redmine requires Bundler 1.5.0 or higher (you're using #{Bundler::VERSION}).\nPlease update with 'gem update bundler'."
