@@ -118,3 +118,42 @@ end
 Dir.glob File.expand_path("../plugins/*/{Gemfile,PluginGemfile}", __FILE__) do |file|
   eval_gemfile file
 end
+
+
+
+
+
+
+
+
+issues
+  id, root_id
+issue_relations
+  issue_from_id
+  issue_to_id  
+time_entries
+  issue_id  
+attachments
+  container_id
+watchers
+  watchable_id  
+journals
+  journalized_id
+          
+SET @CNT1=4500;
+SET @CNT2=4500;
+SET @CNT3=4500;
+SET @CNT4=4500;
+SET @CNT5=4500;
+SET @CNT6=4500;
+SET @CNT7=4500;
+SET @CNT8=4500;
+
+UPDATE issues SET issues.id=@CNT1:=@CNT1+1;
+UPDATE issues SET issues.root_id=@CNT2:=@CNT2+1;
+UPDATE issue_relations SET issue_relations.issue_from_id=@CNT3:=@CNT3+1;
+UPDATE issue_relations SET issue_relations.issue_to_id=@CNT4:=@CNT4+1;
+UPDATE time_entries SET time_entries.issue_id=@CNT5:=@CNT5+1;
+UPDATE attachments SET attachments.container_id=@CNT6:=@CNT6+1;
+UPDATE watchers SET watchers.watchable_id=@CNT7:=@CNT7+1;
+UPDATE journals SET journals.journalized_id=@CNT8:=@CNT8+1;
