@@ -142,22 +142,16 @@ journals
 custom_values  
   customized_id
 
-SET @CNT1=4500;
-SET @CNT2=4500;
-SET @CNT3=4500;
-SET @CNT4=4500;
-SET @CNT5=4500;
-SET @CNT6=4500;
-SET @CNT7=4500;
-SET @CNT8=4500;
-SET @CNT9=4500;
-
 UPDATE issues SET issues.id=@CNT1:=@CNT1+1;
-UPDATE issues SET issues.root_id=@CNT2:=@CNT2+1;
-UPDATE issue_relations SET issue_relations.issue_from_id=@CNT3:=@CNT3+1;
-UPDATE issue_relations SET issue_relations.issue_to_id=@CNT4:=@CNT4+1;
-UPDATE time_entries SET time_entries.issue_id=@CNT5:=@CNT5+1;
-UPDATE attachments SET attachments.container_id=@CNT6:=@CNT6+1;
-UPDATE watchers SET watchers.watchable_id=@CNT7:=@CNT7+1;
-UPDATE journals SET journals.journalized_id=@CNT8:=@CNT8+1;
-UPDATE custom_values SET custom_values.customized_id=@CNT9:=@CNT9+1;
+
+SET @CNT=n;
+
+UPDATE issues SET issues.id=issues.id+@CNT;
+UPDATE issues SET issues.root_id=issues.root_id+@CNT;
+UPDATE issue_relations SET issue_relations.issue_from_id=issue_relations.issue_from_id+@CNT;
+UPDATE issue_relations SET issue_relations.issue_to_id=issue_relations.issue_to_id+@CNT;
+UPDATE time_entries SET time_entries.issue_id=time_entries.issue_id+@CNT;
+UPDATE attachments SET attachments.container_id=attachments.container_id+@CNT;
+UPDATE watchers SET watchers.watchable_id=watchers.watchable_id+@CNT;
+UPDATE journals SET journals.journalized_id=journals.journalized_id+@CNT;
+UPDATE custom_values SET custom_values.customized_id=custom_values.customized_id+@CNT;
