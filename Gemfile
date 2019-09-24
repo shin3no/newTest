@@ -144,7 +144,55 @@ custom_values
 
 UPDATE issues SET issues.id=@CNT1:=@CNT1+1;
 
-SET @CNT=n;
+
+
+
+
+
+
+
+
+
+
+
+
+issues
+
+  id, root_id
+
+issue_relations
+
+  issue_from_id
+
+  issue_to_id  
+
+time_entries
+
+  issue_id  
+
+attachments
+
+  container_id
+
+watchers
+
+  watchable_id  
+
+journals
+
+  journalized_id
+
+custom_values  
+
+  customized_id
+
+
+
+UPDATE issues SET issues.id=@CNT1:=@CNT1+1;
+
+
+
+SET @CNT=5000;
 
 UPDATE issues SET issues.id=issues.id+@CNT;
 UPDATE issues SET issues.root_id=issues.root_id+@CNT;
@@ -155,3 +203,218 @@ UPDATE attachments SET attachments.container_id=attachments.container_id+@CNT;
 UPDATE watchers SET watchers.watchable_id=watchers.watchable_id+@CNT;
 UPDATE journals SET journals.journalized_id=journals.journalized_id+@CNT;
 UPDATE custom_values SET custom_values.customized_id=custom_values.customized_id+@CNT;
+
+
+
+issues
+  project_id  
+boards
+  project_id
+custom_fields_projects
+  project_id
+documents
+  project_id
+enabled_modules  
+  project_id
+enumerations    
+  project_id
+issue_categories
+  project_id  
+members
+  project_id
+news
+  project_id
+projects_trackers      
+  project_id
+queries  
+  project_id
+versions
+  project_id
+wikis
+  project_id
+
+UPDATE projects SET projects.id=30;  
+UPDATE issues SET issues.project_id=30;
+UPDATE boards SET boards.project_id=30;
+UPDATE custom_fields_projects SET custom_fields_projects.project_id=30;
+UPDATE documents SET documents.project_id=30;
+UPDATE enabled_modules SET enabled_modules.project_id=30;
+UPDATE enumerations SET enumerations.project_id=30;
+UPDATE issue_categories SET issue_categories.project_id=30;
+UPDATE members SET members.project_id=30;
+UPDATE news SET news.project_id=30;
+UPDATE projects_trackers SET projects_trackers.project_id=30;
+UPDATE queries SET queries.project_id=30;
+UPDATE versions SET versions.project_id=30;
+UPDATE wikis SET wikis.project_id=30;
+
+
+
+attachments
+  author_id
+email_addresses
+  user_id
+issues
+  author_id   assigned_to_id
+journals
+  user_id
+members
+  user_id
+user_preferences
+  user_id
+users
+  id
+watchers
+  users_id
+
+
+SET @CNT=100;
+UPDATE attachments SET attachments.author_id=attachments.author_id+@CNT;
+UPDATE email_addresses SET email_addresses.user_id=email_addresses.user_id+@CNT;
+UPDATE issues SET issues.author_id=issues.author_id+@CNT;
+UPDATE issues SET issues.assigned_to_id=issues.assigned_to_id+@CNT;
+UPDATE journals SET journals.user_id=journals.user_id+@CNT;
+UPDATE members SET members.user_id=members.user_id+@CNT;
+UPDATE user_preferences SET user_preferences.user_id=user_preferences.user_id+@CNT;
+update user_preferences set user_preferences.id=user_preferences.id+@CNT;
+UPDATE users SET users.id=users.id+@CNT;
+UPDATE watchers SET watchers.user_id=watchers.user_id+@CNT;
+UPDATE groups_users SET groups_users.user_id=groups_users.user_id+@CNT;
+
+custom_fields
+  id
+custom_fields_projects
+  custom_field_id
+custom_fields_trackers  
+  custom_field_id
+custom_values  
+  custom_field_id
+  
+  
+SET @CNT=100;
+UPDATE custom_fields SET custom_fields.id=custom_fields.id+@CNT;
+UPDATE custom_fields_projects SET custom_fields_projects.custom_field_id=custom_fields_projects.custom_field_id+@CNT;
+UPDATE custom_fields_trackers SET custom_fields_trackers.custom_field_id=custom_fields_trackers.custom_field_id+@CNT;
+UPDATE custom_values SET custom_values.custom_field_id=custom_values.custom_field_id+@CNT;
+
+SET @CNT=6000;
+UPDATE attachments SET attachments.id=attachments.id+@CNT;
+
+SET @CNT=100;
+UPDATE email_addresses SET email_addresses.id=email_addresses.id+@CNT;
+UPDATE enabled_modules SET enabled_modules.id=enabled_modules.id+@CNT;
+UPDATE issues SET issues.priority_id=1 where issues.priority_id=13;
+
+
+SET @CNT=500;
+UPDATE members SET members.id=members.id+@CNT;
+UPDATE member_roles SET member_roles.member_id=member_roles.member_id+@CNT;
+SET @CNT=1000;
+UPDATE member_roles SET member_roles.id=member_roles.id+@CNT;
+
+SET @CNT=20000;
+UPDATE journals SET journals.id=journals.id+@CNT;
+UPDATE journal_details SET journal_details.journal_id=journal_details.journal_id+@CNT;
+SET @CNT=30000;
+UPDATE journal_details SET journal_details.id=journal_details.id+@CNT;
+
+UPDATE issue_categories SET issue_categories.id=42 where issue_categories.id=1;
+UPDATE issues SET issues.category_id=42 where issues.category_id=1;
+UPDATE issues SET issues.status_id=2 where issues.status_id=1;
+UPDATE issues SET issues.status_id=5 where issues.status_id=8;
+UPDATE issues SET issues.status_id=4 where issues.status_id=20;
+UPDATE issues SET issues.status_id=20 where issues.status_id=21;
+
+SET @CNT=2000;
+UPDATE issue_relations SET issue_relations.id=issue_relations.id+@CNT;
+
+SET @CNT=1000;
+UPDATE versions SET versions.id=versions.id+@CNT;
+UPDATE issues SET issues.fixed_version_id=issues.fixed_version_id+@CNT;
+
+SET @CNT=10000;
+UPDATE watchers SET watchers.id=watchers.id+@CNT;
+
+
+
+UPDATE workflows SET workflows.old_status_id=2 where workflows.old_status_id=1;
+UPDATE workflows SET workflows.old_status_id=5 where workflows.old_status_id=8;
+UPDATE workflows SET workflows.old_status_id=4 where workflows.old_status_id=20;
+UPDATE workflows SET workflows.old_status_id=20 where workflows.old_status_id=21;
+UPDATE workflows SET workflows.new_status_id=2 where workflows.new_status_id=1;
+UPDATE workflows SET workflows.new_status_id=5 where workflows.new_status_id=8;
+UPDATE workflows SET workflows.new_status_id=4 where workflows.new_status_id=20;
+UPDATE workflows SET workflows.new_status_id=20 where workflows.new_status_id=21;
+
+SET @CNT=5000;
+UPDATE workflows SET workflows.id=workflows.id+@CNT;
+
+SET @CNT=60000;
+UPDATE custom_values SET custom_values.id=custom_values.id+@CNT;
+
+
+
+
+
+
+groups_users 체크(프젝매니저)
+
+
+delete from groups_users;  
+delete from queries;
+delete from tokens;
+delete from easy_settings;
+delete from trackers;
+delete from enumerations;  
+delete from roles;  
+delete from settings;  
+delete from schema_migrations;
+delete from auth_sources;
+delete from boards;
+delete from changes;
+delete from changeset_parents;
+delete from changesets;
+delete from changesets_issues;
+delete from comments;
+delete from custom_field_enumerations;
+delete from custom_fields_roles;
+delete from documents;
+delete from easy_entity_assignments;
+delete from import_items;
+delete from imports;
+delete from messages;
+delete from news;
+delete from open_id_authentication_associations;
+delete from open_id_authentication_nonces;
+delete from queries_roles;
+delete from repositories;
+delete from roles;
+delete from roles_managed_roles;
+delete from wiki_content_versions;
+delete from wiki_pages;
+delete from wiki_contents;
+delete from wiki_redirects;
+delete from wikis;
+delete from time_entries;                     
+                       
+delete from issue_statuses;                               
+                  
+
+
+
+
+
+
+전제 자동 증가 재 설정 필요
+
+show table status where name='member_roles';
+ alter table table_name auto_increment=값;
+ 
+ mysqldump -u root -p --no-create-info database1 > database1.sql
+mysqldump -u root -p --no-create-info database2 > database2.sql
+mysqldump -u root -p --no-data database1 > schema.sql
+새 데이터베이스를 만든 후 다음을 실행하십시오.
+
+mysql -uroot -p -Ddatabase3 < schema.sql
+mysql -uroot -p -Ddatabase3 < database1.sql
+mysql -uroot -p -Ddatabase3 < database2.sql
