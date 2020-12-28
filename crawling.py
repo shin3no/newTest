@@ -2,10 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import NoSuchElementException
 from psutil import virtual_memory
 import pandas as pd
 import multiprocessing
+import pyautogui
 import datetime
 import time
 
@@ -24,15 +24,20 @@ def merge_review(item_L_review, item_review):
 
 
 if __name__ == '__main__':
+    url = "https://play.google.com/store/apps/details?id=com.yantech.orient.tojung&hl=ko&showAllReviews=true"
+    url2 = "https://play.google.com/store/apps/details?id=com.ipapas.sajulite&hl=ko&showAllReviews=true"
+    url3 = "https://play.google.com/store/apps/details?id=com.un7qi3.forceteller&hl=ko&showAllReviews=true"
+    url4 = "https://play.google.com/store/apps/details?id=com.thingsflow.hellobot&hl=ko&showAllReviews=true"
+    url5 = "https://play.google.com/store/apps/details?id=handasoft.mobile.divination&hl=ko&showAllReviews=true"
+
     tstart_time = time.time()
-    # url = "https://play.google.com/store/apps/details?id=com.ipapas.sajulite&hl=ko&showAllReviews=true"
-    # url = "https://play.google.com/store/apps/details?id=com.thingsflow.hellobot&hl=ko&showAllReviews=true"
-    url = "https://play.google.com/store/apps/details?id=handasoft.mobile.divination&hl=ko&showAllReviews=true"
-    # url = "https://play.google.com/store/apps/details?id=com.yantech.orient.tojung&hl=ko&showAllReviews=true"
-    # url = "https://play.google.com/store/apps/details?id=com.un7qi3.forceteller&hl=ko&showAllReviews=true"
     driverPath = "D:\\shin2no\\chromedriver.exe"
     driver = webdriver.Chrome(driverPath)
     driver.get(url)
+    pyautogui.keyDown('win')
+    pyautogui.press('right', presses=2, interval=0.2)
+    pyautogui.keyUp('win')
+    pyautogui.press('enter')
 
     # 리뷰 최하위까지 스크롤 및 더보기 버튼 클릭
     wait = WebDriverWait(driver, 180)
@@ -71,9 +76,9 @@ if __name__ == '__main__':
             print(">>>>>> \t last_height : %d \t new_height : %d \t memory_usage : %.1f%%" % (
             last_height, new_height, memory_usage))
             last_height = new_height
-        elif new_height > 130000:
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            break
+        #elif new_height > 80000:
+         #   driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+          #  break
         elif memory_usage > 86.9 or new_height > 3000000:  # 크롬 메모리 부족으로 인한 종료 방지
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             print(">>> \t The usage of system memory exceeds 90%, stopping crawling.")
@@ -99,58 +104,53 @@ if __name__ == '__main__':
     num_cores = multiprocessing.cpu_count()
 
     start_time = time.time()
-    np_L_reviews = [element.text for i, element in enumerate(driver.find_elements_by_xpath("//span[@jsname='fbQN7e']"))]
-    print("******** finished << L_review : %s >> crawling ********" %
-          str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
+    L_reviews = [element.text for element in driver.find_elements_by_xpath("//span[@jsname='fbQN7e']")]
+    T_reviews = [[element.text, element] for element in driver.find_elements_by_xpath("//span[@class='IEFhEe']")]
+    print("******** finished << L/T_review : %s, %s >> crawling ********" % (len(L_reviews), str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0]))
 
     start_time = time.time()
-    np_reviews = [element.text for i, element in enumerate(driver.find_elements_by_xpath("//span[@jsname='bN97Pc']"))]
-    for i, element in enumerate(np_reviews):
-        try:
-            checker = driver.find_element_by_xpath("//div[@jscontroller='H6eOGe'][%s]/div/div[2]/div[2]/span[@class='IEFhEe']" % (i + 1))
-            if checker:
-                print(i)
-                np_reviews[i] = checker.text + " " + element
-                print(np_reviews[i])
-        except NoSuchElementException:
-            continue
+    reviews = [element.text for element in driver.find_elements_by_xpath("//span[@jsname='bN97Pc']")]
+    print("******** finished << review : %s >> crawling ********" % str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
+
+    start_time = time.time()
+    for xpath in T_reviews:
+        xpath[1] = driver.execute_script("gPt=function(c){if(c.id!==''){return'id(\"'+c.id+'\")'}if(c===document.body){return c.tagName}var a=0;var e=c.parentNode.childNodes;for(var b=0;b<e.length;b++){var d=e[b];if(d===c){return gPt(c.parentNode)+'/'+c.tagName+'['+(a+1)+']'}if(d.nodeType===1&&d.tagName===c.tagName){a++}}};return gPt(arguments[0]).toLowerCase();", xpath[1])
+        xpath[1] = int(''.join(filter(str.isdigit, xpath[1].split('/')[-5])))
+        reviews[xpath[1]-1] = xpath[0] + " " + reviews[xpath[1]-1]
     pool = multiprocessing.Pool(num_cores)
-    np_reviews = pool.starmap(merge_review, zip(np_L_reviews, np_reviews))
+    reviews = pool.starmap(merge_review, zip(L_reviews, reviews))
     pool.close()
     pool.join()
-    print("******** finished << review : %s >> crawling ********" %
+    print("******** finished << join review : %s >> crawling ********" %
           str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     start_time = time.time()
-    np_dates = [element.text for i, element in
-                enumerate(driver.find_elements_by_xpath("//div[@class='bAhLNe kx8XBd']/div/span[@class='p2TkOb']"))]
+    dates = [element.text for element in driver.find_elements_by_xpath("//div[@class='bAhLNe kx8XBd']/div/span[@class='p2TkOb']")]
     pool = multiprocessing.Pool(num_cores)
-    np_dates = pool.map(convert_date, np_dates)
+    dates = pool.map(convert_date, dates)
     pool.close()
     pool.join()
     print("******** finished << date : %s >> crawling and replace ********" %
           str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     start_time = time.time()
-    np_likes = [element.text for i, element in
-                enumerate(driver.find_elements_by_xpath("//div[@aria-label='이 리뷰가 유용하다는 평가를 받은 횟수입니다.']"))]
+    likes = [element.text for element in driver.find_elements_by_xpath("//div[@aria-label='이 리뷰가 유용하다는 평가를 받은 횟수입니다.']")]
     print("******** finished << like : %s >> crawling ********" %
           str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     start_time = time.time()
-    np_stars = [element.get_attribute('aria-label')[10:11] for i, element in enumerate(
-        driver.find_elements_by_xpath("//span[@class='nt2C1d']/div[@class='pf5lIe']/div[@role='img']"))]
+    stars = [element.get_attribute('aria-label')[10:11] for element in driver.find_elements_by_xpath("//span[@class='nt2C1d']/div[@class='pf5lIe']/div[@role='img']")]
     print("******** finished << star : %s >> crawling ********" %
           str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     # 데이터 통합
     start_time = time.time()
-    np_results = list(zip(np_dates, np_stars, np_likes, np_reviews))
+    results = list(zip(dates, stars, likes, reviews))
     print("******** finished << review merge : %s >> ********" %
           str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     # csv 저장
-    data = pd.DataFrame(np_results, dtype='object')
+    data = pd.DataFrame(results, dtype='object')
     data.columns = ['날짜', '평점', '동의', '리뷰']
     pkg_name = url.split('?id=')[-1].split('&')[0]
     date_format = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d_%H-%M-%S")
