@@ -113,7 +113,7 @@ if __name__ == '__main__':
     print("******** finished << review : %s >> crawling ********" % str(datetime.timedelta(seconds=time.time() - start_time)).split(".")[0])
 
     start_time = time.time()
-    for xpath in T_reviews:
+    for xpath in T_reviews:     # xpath 경로 얻어와서 반복되는 div의 n번째 값 확인
         xpath[1] = driver.execute_script("gPt=function(c){if(c.id!==''){return'id(\"'+c.id+'\")'}if(c===document.body){return c.tagName}var a=0;var e=c.parentNode.childNodes;for(var b=0;b<e.length;b++){var d=e[b];if(d===c){return gPt(c.parentNode)+'/'+c.tagName+'['+(a+1)+']'}if(d.nodeType===1&&d.tagName===c.tagName){a++}}};return gPt(arguments[0]).toLowerCase();", xpath[1])
         xpath[1] = int(''.join(filter(str.isdigit, xpath[1].split('/')[-5])))
         reviews[xpath[1]-1] = xpath[0] + " " + reviews[xpath[1]-1]
